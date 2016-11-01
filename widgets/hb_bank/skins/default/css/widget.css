@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+	.bankinfo {
+		clear:both;
+		overflow:hidden;
+		border-radius:4px;
+		border:1px solid #ddd;
+		border-top-color:#ececec;
+		border-left-color:#ececec;
+		margin:0px 0px 20px;
+		background-color:#fff;
+		-webkit-box-shadow:0px 2px 1px rgba(0,0,0,.05);
+		-moz-box-shadow:0px 2px 1px rgba(0,0,0,.05);
+		box-shadow:0px 2px 1px rgba(0,0,0,.05);
+	}
+		.bankinfo div {
+			clear:both;
+		}
+			.bankinfo .title {
+				padding:7px 15px;
+				color:#f62e00;
+				font-size:18px;
+				text-align:center;
+				letter-spacing:-.05em;
+				text-shadow:1px 1px 0px rgba(255,255,255,0.8);
+				margin-bottom:2px;
+				background-color:#fff;
+				border-bottom:1px solid #eee;
+				-webkit-box-shadow:0px 2px 2px rgba(0,0,0,.03);
+				-moz-box-shadow:0px 2px 2px rgba(0,0,0,.03);
+				box-shadow:0px 2px 2px rgba(0,0,0,.03);
+				background-position:0px -50px;
+				background-repeat:repeat-x;
+				background-image:url('img/gradiant.png');
+			}
+			.bankinfo div ul {
+				clear:both;
+				font-size:115%;
+				padding:10px 15px;
+			}
+				.bankinfo div ul li {
+					list-style:none;
+					line-height:26px;
+				}
+					.bankinfo div ul li strong {
+						color:#444;
+					}
+						.bankinfo div ul li span {
+							padding-right:5px;
+						}
+							.bankinfo a strong {
+								color:#222;
+								font-weight:700;
+							}

@@ -1,0 +1,18 @@
+<!--@if(!$module_info->colorset)-->
+    {@$module_info->colorset == "gray"}
+<!--@end-->
+
+<!--%import("css/gray.css")-->
+
+<!--//제목 출력-->
+<div id="at_header">
+	<!--@if($module_info->title)-->
+	<div class="boardTitle">
+		<h2 class="boardTitleText"><a href="{getUrl('','mid',$mid,'listStyle',$listStyle)}">{$module_info->title}<!--@if($module_info->sub_title)--> : <em>{$module_info->sub_title}</em><!--@end--></a></h2>
+	</div>
+	<!--@end-->
+
+	<!--@if($module_info->header_text)-->
+	<p class="boardDescription">{$module_info->header_text}</p>
+	<!--@end-->
+</div>

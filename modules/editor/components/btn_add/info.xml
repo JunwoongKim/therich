@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component version="0.2">
+    <title xml:lang="ko">버튼추가</title>
+    <description xml:lang="ko">
+    	
+    	버튼을 삽입 해줍니다.
+    	
+    	*********0.4**********
+    	- 스타일 기능 추가(3가지스타일)
+    	
+    	*********0.3**********
+    	- 버튼색 칼라 픽스로 가능하도록 변경
+    	- 가로/세로/폰트 사이즈 기능 추가
+    	
+	</description>
+    <version>0.3</version>
+    <date>2015-06-16</date>
+
+    <author email_address="2sis@2sisdesign.com" link="http://www.2sisstore.com">
+        <name xml:lang="ko">2sis</name>
+        <name xml:lang="jp">2sis</name>
+        <name xml:lang="zh-CN">2sis</name>
+        <name xml:lang="en">2sis</name>
+        <name xml:lang="es">2sis</name>
+        <name xml:lang="ru">2sis</name>
+        <name xml:lang="zh-TW">2sis</name>
+    </author>
+</component>

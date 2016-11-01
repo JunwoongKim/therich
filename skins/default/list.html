@@ -1,0 +1,37 @@
+<!--%import("./css/widget.css")-->
+<div class="redtokbox">
+	<img src="img/red-talk-box_title.png" alt="talkbox title" cond="$widget_info->message_title=='Y'">
+		<p class="message_title r5" style="background-color:{$widget_info->title_color}"|cond="$widget_info->title_color">
+			<img src="img/red-talk-box_online.png">
+			<span style="position: absolute; right: 5px;" cond="$is_logged">
+				<a href="JavaScript:messageTalkList('{$widget_info->xe_path}')"><img src="img/red_list.png" alt="messagetalk list"></a>
+				<a href="JavaScript:messageTalkFriends('{$widget_info->xe_path}')"><img src="img/red_search.png" alt="messagetalk friends"></a>
+			</span>
+		</p>
+    <ul class="message_widget" style="height: {$widget_info->userbox_height}px; overflow-y:scroll;"|cond="$widget_info->userbox_height">
+        <!--@foreach($widget_info->member_list as $key => $val)-->
+        <li class="r5">
+        	<a href="#" class="member_{$val->member_srl}" onclick="return false">{htmlspecialchars($val->nick_name)}</a>
+    		<span cond="$is_logged">
+    			<a href="javascript:messageTalkSend('{$widget_info->xe_path}', {$val->member_srl}, '{$val->nick_name}');">
+    				<img src="img/red-talk-box_talk.png" alt="messagetalk">
+				</a>
+			</span>
+    	</li>
+        <!--@end-->
+    </ul>
+</div>
+<script>
+	function messageTalkList(path) {
+	    if (path == '/') path = '';
+	    window.open(path + "/{$widget_info->messagetalk}/talk/index.php","personal","width=400,height=600,scrollbars=yes");
+	}
+	function messageTalkSend(path, member_srl, nick_name) {
+		if (path == '/') path = '';
+		window.open(path + "/{$widget_info->messagetalk}/talk/detail.php?target_srl=" + member_srl + "&nick_name=" + nick_name,"personal","width=400,height=600,scrollbars=yes");
+	}
+	function messageTalkFriends(path) {
+	    if (path == '/') path = '';
+	    window.open(path + "/{$widget_info->messagetalk}/talk/findFriends.php","personal","width=400,height=600,scrollbars=yes");
+	}
+</script>

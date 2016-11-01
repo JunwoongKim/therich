@@ -1,0 +1,105 @@
+<load target="filter/send_mail.xml" />
+<load target="css/style.css" />
+<load target="js/script.js" />
+<div class="x_page-header">
+{@
+// 버전 구하기
+$oModuleModel = getModel('module');
+$module_list = $oModuleModel->getModuleList();
+}
+
+<h1 class="xeAdmin">{$lang->mailing}<!--@foreach($module_list as $key => $val)--><!--@if($val->path == './modules/mailing/')--> v {$val->version}<!--@end--><!--@end--></h1>
+</div>
+<div class="infoText">
+    <b>[라이선스 공지]</b><br />
+    <div>관리자 메일 모듈 : 1사이트 사용, 수정 및 재배포 금지</div><br />
+    <b>[결제하기]</b><br />
+    <div>
+    	본 모듈을 상업적으로 사용하시거나 용역 납품하신다면 다음 링크 버튼으로 유료결제 부탁드립니다.
+    	<form method='POST' action='https://express.inicis.com/express/start' name='inipayExpressButtonForm' target='_top'>
+		<input type='image' src='https://stdux.inicis.com/express/btn/blue01.jpg' style='border:0px;'/>
+		<input type='hidden' name='prdCode' value='EHYBBCBZJ'>
+		<input type='hidden' name='signHash' value='212ad8b02619e1502a5433fcb755e2a1f9da2329fd4656aa9bee75cfbd82af2d'>
+		</form>
+    </div><br />
+	<b>[주의사항]</b><br />
+	<div>{nl2br($lang->about_mailing)}</div>
+</div>
+
+<form action="./" method="post" onsubmit="return procFilter(this, send_mail)">
+	<table cellspacing="0" border="0" class="admin_mailing">
+		<thead>
+			<tr>
+			{@
+				$oModuleModel = getModel('module');
+				$member_config = $oModuleModel->getModuleConfig('member');
+			}
+				<th>{$lang->sender_nickname}<br /><a href="{getUrl('','module','admin','act','dispMemberAdminConfig')}">[웹마스터설정]</a></th>
+				<td>
+					<input type="text" readonly="readonly" name="sender_nickname" value="{$member_config->webmaster_name}" class="input_text" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>{$lang->sender_email}</th>
+				<td>
+					<input type="text" readonly="readonly" name="sender_email" value="{$member_config->webmaster_email}" class="input_text" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>{$lang->receive_group}</th>
+				<td>
+				
+						<!--@foreach($group_list as $val)-->						
+						<input type="radio" name="receive_group" value="{$val->group_srl}" /> {$val->title} 					
+						<!--@end-->						
+						<input type="radio" name="receive_group" value="all" /> {$lang->send_to_all}
+
+				</td>
+			</tr>
+			<tr>
+			  <th>{$lang->ggmailing_allow}</th>
+			  <td>
+					<input type="radio" name="mailing_allow" value="Y" /> {$lang->allow_mailing} 
+					<input type="radio" name="mailing_allow" value="N" /> {$lang->all_mailing}
+				</td>
+			<tr>
+				<th>{$lang->title}</th>
+				<td>
+					<input type="text" name="title" value="" class="input_text" /> 
+				</td>
+			</tr>
+			<tr>
+				<th>{$lang->content}</th>
+				<td>
+				<input type="hidden" name="primary_key" id="primary_key" value="0">
+
+				{@
+				$oEditorModel = &getModel('editor');
+				Context::set('editor_skin_list', $oEditorModel->getEditorSkinList());
+
+				$option->primary_key_name = 'primary_key';
+				$option->content_key_name = 'content';
+				$option->allow_fileupload = true;
+				$option->enable_autosave = false;
+				$option->enable_default_component = true;
+				$option->enable_component = true;
+				$option->resizable = true;
+				$option->height = 300;
+				$option->skin = "xeeditor";
+				$editor = $oEditorModel->getEditor($content, $option);
+				//$editor->editor_sequence;
+				}
+
+				<input type="hidden" name="content" id="content" value="{htmlspecialchars($content)}">
+
+				{$editor}
+
+				</td>
+			</tr>
+		</thead> 
+	</table>
+
+	<div class="right">
+		<input type="submit" value="{$lang->ggsender}" accesskey="s" class="medium white" />
+	</div>
+</form>

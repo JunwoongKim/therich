@@ -1,0 +1,29 @@
+<include target="_header.html" />
+
+<div  cond="$oComment->isExists()" class="feedback">
+	<div class="fbMeta">
+		<img cond="$oComment->getProfileImage()" src="{$oComment->getProfileImage()}" alt="Profile" class="profile" />
+		<span cond="!$oComment->getProfileImage()" class="profile"></span>
+		<h3 class="author">
+			<a cond="!$oComment->member_srl && $oComment->homepage" href="{$oComment->getHomepageUrl()}">{$oComment->getNickName()}</a>
+			<strong cond="!$oComment->member_srl && !$oComment->homepage">{$oComment->getNickName()}</strong>
+			<a cond="$oComment->member_srl" href="#popup_menu_area" class="member_{$oComment->member_srl}" onclick="return false">{$oComment->getNickName()}</a>
+		</h3>
+		<p class="time">{$oComment->getRegdate('Y.m.d H:i')}</p>				
+		<p class="vote" cond="$oComment->get('voted_count')!=0">{$lang->cmd_vote}<strong>{$oComment->get('voted_count')?$oComment->get('voted_count'):0}</strong></p>
+	</div>
+	{$oComment->getContent(false)}
+</div>
+
+<form action="./" method="get" onsubmit="return procFilter(this, delete_comment)" class="context_message">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="document_srl" value="{$oComment->get('document_srl')}" />
+	<input type="hidden" name="comment_srl" value="{$oComment->get('comment_srl')}" />
+	<h1>{$lang->cmd_comment_do} {$lang->confirm_delete}</h1>
+	<div class="btnArea">
+		<input type="submit" class="b_btn" value="{$lang->cmd_delete}" />
+		<button type="button" class="b_btn" onclick="history.back()">{$lang->cmd_cancel}</button>
+	</div>
+</form>
+<include target="_footer.html" />

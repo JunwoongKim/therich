@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">REDTOKBOX</title>
+    <description xml:lang="ko">
+        - 제조사 : 이시스스토어
+        - 지원코어버전 : 1.5/ 1.7버전
+          로그인 되어 있는 회원에게 메시지톡을 보낼수있도록된 위젯입니다.    
+    </description>
+    <version>1.4</version>
+    <date>2012-5-10</date>
+    <link>http://www.2sisstore.com/</link>
+    <author email_address="2sis@2sisdesign.com" link="http://www.2sisstore.com/">
+        <name xml:lang="ko">2SISSTORE</name>
+    </author>
+    <colorset>
+        <color name="default">
+            <title xml:lang="ko">기본</title>
+        </color>
+    </colorset>
+</skin>

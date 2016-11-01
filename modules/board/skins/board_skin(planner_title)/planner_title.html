@@ -1,0 +1,169 @@
+<!-- 목록 출력 -->
+<form action="./" method="get" <!--@if(!$module_info->comment)-->style="margin-top:10px;"<!--@end-->>
+
+  <!--@if(Context::get('search_target')=='regdate')-->
+    {@ $regdate = Context::get('search_keyword')}
+    <!--@if($regdate)-->
+      {@ $regdate = zdate($regdate, 'Ym')}
+    <!--@end-->
+  <!--@end-->
+  <!--@if(!$regdate)-->
+    {@ $regdate = zdate(date('YmdHis'), 'Ym')}
+  <!--@end-->
+
+  {@ $cur_date = $regdate}
+  {@ $last_day = date('t', ztime($regdate))}
+  {@ $start_week = date('w', ztime($regdate))}
+
+  {@ $prev_month = date('Ym', mktime(1,0,0,zdate($regdate,'m'),1,zdate($regdate,'Y'))-60*60*24)}
+  {@ $prev_year = date('Y', mktime(1,0,0,1,1,zdate($regdate,'Y'))-60*60*24)}
+  {@ $next_month = date('Ym', mktime(1,0,0,zdate($regdate,'m'),$last_day,zdate($regdate,'Y'))+60*60*24)}
+  {@ $next_year = date('Y', mktime(1,0,0,12,$last_day,zdate($regdate,'Y'))+60*60*24)}
+
+
+  <div class="calendar_navi_area">
+    <button type="button" class="prevYear" onclick="location.href='{getUrl('search_target','regdate','search_keyword',$prev_year)}'"><span>&lt;&lt;</span></button>
+    <button type="button" class="prevMonth" onclick="location.href='{getUrl('search_target','regdate','search_keyword',$prev_month)}'"><span>&lt;</span></button>
+    <span class="current_ym">{zdate($cur_date,"Y.m")}</span>
+    <button type="button" class="nextMonth" onclick="location.href='{getUrl('search_target','regdate','search_keyword',$next_month)}'"><span>&gt;</span></button>
+    <button type="button" class="nextYear" onclick="location.href='{getUrl('search_target','regdate','search_keyword',$next_year)}'"><span>&gt;&gt;</span></button>
+  </div>
+
+
+  <div class="calendar_area">
+    <table cellspacing="0">
+      <thead>
+        <tr>
+          <th scope="col" class="sunday">{$lang->unit_week['Sunday']}</th>
+          <th scope="col">{$lang->unit_week['Monday']}</th>
+          <th scope="col">{$lang->unit_week['Tuesday']}</th>
+          <th scope="col">{$lang->unit_week['Wednesday']}</th>
+          <th scope="col">{$lang->unit_week['Thursday']}</th>
+          <th scope="col">{$lang->unit_week['Friday']}</th>
+          <th scope="col" class="saturday">{$lang->unit_week['Saturday']}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+       <!--// 게시글 목록을 최신 등록순으로 구함-->
+       {@ $oDocumentModel = &getModel('document')}
+       {@ $obj->module_srl = $oDocument->get('module_srl')}
+       {@ $obj->sort_index = 'list_order'}
+       {@ $obj->order_type = 'asc'}
+       {@ $obj->list_count = $module_info->plan_count}
+       {@ $output = $oDocumentModel->getDocumentList($obj, false)}
+       {@ $document_list = $output->data}
+
+       <!--// 확장변수 형태 중 'date'형태의 'eid'를 구함-->
+       <!--@foreach($extra_keys as $key => $val)-->
+         <!--@if($val->type=='date')-->
+           {@ $exist_edate = 1}
+           {@ $edate_eid[] = $val->eid}
+         <!--@end-->
+       <!--@end-->
+
+        <!--@for($i=0;$i<6;$i++)-->
+          <!--@if($day < $last_day)-->
+            <tr>
+              <!--@for($j=0;$j<7;$j++)-->
+                {@ $num = $i*7 + $j}
+                <!--@if(!$started && $num >= $start_week)-->
+                  {@ $started = true}
+                  {@ $day = 1}
+                  {@ $cur_date = $regdate}
+                  {@ $cur_date = $cur_date.sprintf('%02d',$day)}
+                <!--@elseif($started)-->
+                  {@ $day++}
+                  {@ $cur_date = $regdate}
+                  {@ $cur_date = $cur_date.sprintf('%02d',$day)}
+                <!--@end-->
+
+                <!--@if($cur_date == date("Ymd"))-->{@ $today_class = "today"}<!--@else-->{@ $today_class = ""}<!--@end-->
+
+                <!--@foreach($document_list as $no => $document)-->
+                  <!--@if($exist_edate==1 && $document->getExtraEidValue($edate_eid[0])==$cur_date || $document->getExtraEidValue($edate_eid[1])==$cur_date || $document->getExtraEidValue($edate_eid[2])==$cur_date)-->
+                    {@ $plan_class_names[$cur_date] = 'plan'}
+                  <!--@else if($exist_edate!=1 && $document->getRegdate('Ymd')==$cur_date)-->
+                    {@ $plan_class_names[$cur_date] = 'plan'}
+                  <!--@end-->
+                <!--@end-->
+
+                <td class="<!--@if($j==0)-->sunday<!--@else if($j==6)-->saturday<!--@end--> {$today_class}" align="left" valign="top">
+                  {@ $evar_date = zdate($cur_date, 'Y-m-d')}
+                  <div class="day_area day_area{$cur_date}" style="height:{$module_info->day_cell_height}px">
+                    <!--@if($day <= $last_day)-->
+                      <!--@if($plan_class_names[$cur_date])-->
+                        <span class="day day_plan"><a href="{getUrl('act','dispBoardWrite','evar_date',$evar_date)}">{$day}</a></span>
+                        <span class="title_area">
+                          {@ $p_count = 1}
+                          <!--@foreach($document_list as $no => $document)-->
+                            <!--@if($exist_edate==1 && $document->getExtraEidValue($edate_eid[0])==$cur_date || $document->getExtraEidValue($edate_eid[1])==$cur_date || $document->getExtraEidValue($edate_eid[2])==$cur_date)-->
+                              <span class="plan plan{$p_count}">
+                                <a href="{getUrl('document_srl',$document->document_srl)}"><span class="new_icon">{$document->printExtraImages(60*60*$module_info->duration_new)}</span>{$document->getTitle($module_info->subject_cut_size)}</a>
+                              </span>
+                              {@ $p_count++}
+                            <!--@else if($exist_edate!=1 && $document->getRegdate('Ymd')==$cur_date)-->
+                              <span class="plan plan{$p_count}">
+                                <a href="{getUrl('document_srl',$document->document_srl)}">{$document->getTitle($module_info->subject_cut_size)}</a>
+                              </span>
+                              {@ $p_count++}
+                            <!--@end-->
+                          <!--@end-->
+                        </span>
+                      <!--@else-->
+                        <span class="day day_noplan"><a href="{getUrl('act','dispBoardWrite','evar_date',$evar_date)}">{$day}</a></span>
+                      <!--@end-->
+                    <!--@end-->
+                  </div>
+                  <span style="position:absolute; bottom:0px; right:0px; width:1px; height:1px; overflow:hidden; display:block; z-index:30;">&nbsp;</span> <!--//IE7이하버전에서 table td에 내용이 없을 경우 선이 생기지 않는 문제 해결용-->
+                </td>
+
+              <!--@end-->
+            </tr>
+          <!--@end-->
+        <!--@end-->
+      </tbody>
+    </table>
+  </div>
+
+
+
+</form>
+
+
+
+<script language="javascript">
+jQuery(window).load(function(){
+
+  var day_width = jQuery('.calendar_area div.day_area').width();
+  var plan_height = jQuery('.calendar_area span.plan').children('a').outerHeight();
+  jQuery('.calendar_area span.plan').css('width',day_width);
+  jQuery('.calendar_area span.plan').css('height',plan_height);
+
+  jQuery('.calendar_area span.plan').hover(function(){
+    jQuery(this).parent().parent().parent().css('z-index','31');
+    jQuery(this).css('z-index','301');
+    jQuery(this).css('overflow','visible');
+    jQuery(this).children('a').css('padding','5px');
+    jQuery(this).children('a').css('background','#fff');
+    jQuery(this).children('a').css('border','1px solid #000');
+  }, function(){
+    jQuery(this).parent().parent().parent().css('z-index','30');
+    jQuery(this).css('z-index','300');
+    jQuery(this).css('overflow','hidden');
+    jQuery(this).children('a').css('padding','0px');
+    jQuery(this).children('a').css('background','none');
+    jQuery(this).children('a').css('border','0px');
+  });
+
+
+  jQuery('.calendar_area span.new_icon').children('img').css('display','none');
+
+  jQuery('.calendar_area span.new_icon').each(function() {
+    var icon_title = jQuery(this).children('img').eq(0).attr('title');
+    if(icon_title=='new' || icon_title=='update') {
+      jQuery(this).children('img').eq(0).css('display','inline');
+    }
+  });
+});
+</script>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+  <grants />
+  <permissions />
+  
+  <actions>
+    <action name="dispMailingAdminInsert" type="view" admin_index="true" menu_name="mailing" menu_index="true" />
+    <action name="procMailingAdminSendMail" type="controller" standalone="true" />
+  </actions>
+  <menus>
+        <menu name="mailing">
+            <title xml:lang="en">Admin Mail</title>
+            <title xml:lang="ko">관리자 메일</title>
+        </menu>
+  </menus>
+</module>

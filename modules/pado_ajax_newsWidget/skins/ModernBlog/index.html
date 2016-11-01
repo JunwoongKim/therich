@@ -1,0 +1,98 @@
+<load target="./css/ModernBlog.css"/>
+<load target="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic"/>
+<!--@if($SCRIPT_LOADED == false)-->
+{Context::set("SCRIPT_LOADED", true);}
+<script>
+    var OPCTION = {DOM_POINTER: []};
+    OPCTION.DOM_POINTER.push({
+        URL: "{getUrl()}",
+        MODULE_SRL: "{$ajaxContainer[1]}",
+        LIST_COUNT: "{$ajaxContainer[2]}",
+        TITLE_CUT: "{$ajaxContainer[3]}",
+        CONTENT_CUT: "{$ajaxContainer[4]}",
+        HOURS: "{$ajaxContainer[5]}",
+        NEW_MARK_TITLE: "{$ajaxContainer[6]}",
+        LAST_MARK_TITLE: "{$ajaxContainer[7]}",
+        MARK_DISPLAY: "{$ajaxContainer[8]}"
+    });
+    var dataFunction = (function (OPCTION) {
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: OPCTION.URL,
+            data: {
+                module: "pado_ajax_newsModule",
+                act: "dispDESC",
+                TITLE_CUT: OPCTION.TITLE_CUT,
+                CONTENT_CUT: OPCTION.CONTENT_CUT,
+                Hours: OPCTION.HOURS,
+                LIST_COUNT: OPCTION.LIST_COUNT,
+                MODULE_SRL: OPCTION.MODULE_SRL
+            },
+            dataType: "json",
+            success: function (res) {
+                var selector = $(".other" + OPCTION.MODULE_SRL);
+                $(selector).empty(); // 1.5 버전에서 innerHTML로 변경하기.
+
+                for (var k = 0; k < OPCTION.LIST_COUNT; k++) {
+                    var titleSubString = res.data[k].title;
+                    var content = res.data[k].content;
+
+                    function TimerCheck(i) {
+                        if (OPCTION.MARK_DISPLAY != "none") {
+                            if (res.data[k].currentDate < res.data[k].regdate) return "<div class=\"ding-padoModernBlog-listView_update\" style=\"" + "{$padding_left}" + "\">" + OPCTION.NEW_MARK_TITLE + "</div>";
+                            else return "<div class=\"ding-padoModernBlog-listView_normal\" style=\"" + "{$padding_left}" + "\">" + OPCTION.LAST_MARK_TITLE + "</div>";
+                        } else return '';
+                    }
+
+                    $(".other" + OPCTION.MODULE_SRL).append("<div class=\"ding-padoModernBlog-listView_context\"" + "style=\"{$margin_left}\">" + TimerCheck(k) +
+                    "<a href=\"" + OPCTION.URL + "?mid=" + OPCTION.MODULE_SRL + "&document_srl=" + res.data[k].document_srl + "\">" +
+                    "<div class=\'ding-padoModernBlog-listView_subTitle\'>" + titleSubString + "</div>" +
+                    "<div class=\'ding-padoModernBlog-listView_subContent\'>" + content + "</div>");
+                }
+            }
+        });
+    });
+    //1초마다 갱신해서 호출합니다.
+    var setAutoFunction = (function () { //일회용 호출.
+        for (var i = 0; i < OPCTION.DOM_POINTER.length; i++) {
+            dataFunction(OPCTION.DOM_POINTER[i]);
+        }
+        setTimeout('setAutoFunction()', 3000); //다시 재귀합니다. (AJAX 통신에 의해서 갱신합니다.)
+    }); setAutoFunction();
+</script>
+<!--@else if($SCRIPT_LOADED == true)-->
+<script>
+    //새로 추가된 위젯을 보내줍니다.
+    OPCTION.DOM_POINTER.push(
+            {
+                URL: "{getUrl()}",
+                MODULE_SRL: "{$ajaxContainer[1]}",
+                LIST_COUNT: "{$ajaxContainer[2]}",
+                TITLE_CUT: "{$ajaxContainer[3]}",
+                CONTENT_CUT: "{$ajaxContainer[4]}",
+                HOURS: "{$ajaxContainer[5]}",
+                NEW_MARK_TITLE: "{$ajaxContainer[6]}",
+                LAST_MARK_TITLE: "{$ajaxContainer[7]}",
+                MARK_DISPLAY: "{$ajaxContainer[8]}"
+            }
+    );
+    //위젯 추가 즉시 바로 게시물을 보게하기 위함입니다.
+    for (var i = 0; i < OPCTION.DOM_POINTER.length; i++) {
+        dataFunction(OPCTION.DOM_POINTER[i]);
+    }
+</script>
+<!--@end-->
+
+<div class="ding-padoModernBlog-listView">
+    <div class='ding-padoModernBlog-listView_header'>
+        <!--
+        <a href="{getUrl()}?mid={$ajaxContainer[1]}">
+            <div class="ding-padoModernBlog-listView_more" style="'width:{$ajaxContainer[0]}'"></div>
+        </a>
+        -->
+
+        <div class='ding-padoModernBlog-listView_title'>{$ajaxContainer[0]}</div>
+    </div>
+    <div class="ding-padoModernBlog-listView_contexts other{$ajaxContainer[1]}" style="position:relative"></div>
+</div>

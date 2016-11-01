@@ -1,0 +1,15 @@
+<filter name="send_mail" module="mailing" act="procMailingAdminSendMail">
+    <form>
+	    <node target="sender_nickname" required="true"  maxlength="250" />
+	    <node target="sender_email" required="true"  maxlength="250" />
+	    <node target="receive_group" required="true"  maxlength="250" />
+	    <node target="mailing_allow" required="true"  maxlength="250" />
+	    <node target="title" required="true" minlength="1" maxlength="250" />
+	    <node target="content" required="true" minlength="1" maxlength="80000" />
+	    
+    </form>
+    <response callback_func="completeSend">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

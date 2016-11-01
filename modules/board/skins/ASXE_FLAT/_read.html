@@ -1,0 +1,103 @@
+<div class="board_read">
+	<!-- READ HEADER -->
+	<div class="read_header">
+		<h1>
+			<a href="{getUrl('category',$oDocument->get('category_srl'), 'document_srl', '')}" class="category" cond="$module_info->use_category=='Y' && $oDocument->get('category_srl')">{$category_list[$oDocument->get('category_srl')]->title} : </a>
+			<a href="{$oDocument->getPermanentUrl()}">{$oDocument->getTitle()}</a>
+		</h1>
+		<div class="meta_author">
+			<a cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && $oDocument->isExistsHomepage()" href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="author">{$oDocument->getNickName()}</a>
+			<block cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && !$oDocument->isExistsHomepage()">{$oDocument->getNickName()}</block>
+			<a cond="$module_info->display_author!='N' && $oDocument->getMemberSrl()" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+		</div>
+		<div class="meta">
+			<span class="time">
+				{$oDocument->getRegdate('Y.m.d H:i')}
+			</span>
+			<span class="sum">
+				<span class="read">{$lang->readed_count} <strong>{$oDocument->get('readed_count')}</strong></span>
+				<span class="vote" cond="$oDocument->get('voted_count')!=0 || $oDocument->get('blamed_count')!=0">{$lang->cmd_vote}
+					<strong> {$oDocument->get('voted_count')?$oDocument->get('voted_count'):0}</strong> / <strong> {$oDocument->get('blamed_count')?$oDocument->get('blamed_count'):0}</strong>
+				</span>
+			</span>
+		</div>
+	</div>
+	<!-- /READ HEADER -->
+	<!-- Extra Output -->
+	<div class="exOut" cond="$oDocument->isExtraVarsExists() && (!$oDocument->isSecret() || $oDocument->isGranted())">
+		<table border="1" cellspacing="0" summary="Extra Form Output">
+			<tr loop="$oDocument->getExtraVars() => $key,$val">
+				<th scope="row">{$val->name}</th>
+				<td>{$val->getValueHTML()}&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+	<!-- /Extra Output -->
+	<!-- READ BODY -->
+	<div class="read_body">
+		<!--@if($oDocument->isSecret() && !$oDocument->isGranted())-->
+		<form action="./" method="get" onsubmit="return procFilter(this, input_password)">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="page" value="{$page}" />
+			<input type="hidden" name="document_srl" value="{$oDocument->document_srl}" />
+			<p><label for="cpw">{$lang->msg_is_secret} {$lang->msg_input_password}</label></p>
+			<p><input type="password" name="password" id="cpw" class="iText" /><input type="submit" value="{$lang->cmd_input}" class="btn" />
+			</p>
+		</form>
+		<!--@else-->
+		{$oDocument->getContent(false)}
+		<!--@end-->
+	</div>
+	<!-- /READ BODY -->
+	<!-- READ FOOTER -->
+	<div class="read_footer">			
+		<div class="sign" cond="$module_info->display_sign!='N'&&($oDocument->getProfileImage()||$oDocument->getSignature())">
+			<div class="pf_wrapper"><img cond="$oDocument->getProfileImage()" src="{$oDocument->getProfileImage()}" alt="Profile" class="pf" />
+				<span cond="!$oDocument->getProfileImage()" class="pf"></span></div>
+			<div cond="$oDocument->getSignature()" class="tx">{$oDocument->getSignature()}</div>
+		</div>
+
+		{@ $tag_list = $oDocument->get('tag_list') }
+		<div class="tag" cond="$tag_list">
+			<strong>{$lang->tag}</strong>
+			<span class="tags" cond="count($tag_list)">
+				<!--@for($i=0;$i<count($tag_list);$i++)-->
+					{@ $tag = $tag_list[$i]; }
+					<a href="{getUrl('search_target','tag','search_keyword',$tag,'document_srl','')}" class="tag" rel="tag">{htmlspecialchars($tag)}</a><span>,</span>
+				<!--@end-->
+			</span>			
+		</div>
+
+		<div cond="$oDocument->hasUploadedFiles()" class="fileList">
+			<div class="title"><strong>{$lang->uploaded_file}</strong> {$oDocument->get('uploaded_count')}</div>
+			<ul class="files">
+				<li loop="$oDocument->getUploadedFiles()=>$key,$file"><a href="{getUrl('')}{$file->download_url}">{$file->source_filename} <span class="fileSize">_ {FileHandler::filesize($file->file_size)} / Download:{number_format($file->download_count)}</span></a></li>
+			</ul>
+		</div>
+
+		<div class="actions">
+			<span class="btnArea"> 
+				<a class="document_{$oDocument->document_srl} action b_btn" href="#popup_menu_area" onclick="return false">{$lang->cmd_document_do}...</a>
+				<a cond="$oDocument->isEditable()" class="b_btn" href="{getUrl('act','dispBoardWrite','document_srl',$oDocument->document_srl,'comment_srl','')}">{$lang->cmd_modify}</a>
+				<a cond="$oDocument->isEditable()" class="b_btn" href="{getUrl('act','dispBoardDelete','document_srl',$oDocument->document_srl,'comment_srl','')}">{$lang->cmd_delete}</a>
+			</span>
+			<span class="actionList">
+				<ul class="sns">
+					<li><a href="http://twitter.com/"><i class="xe-twitter"></i><span class="blind">Twitter</span></a></li>
+					<li><a href="http://facebook.com/"><i class="xe-facebook"></i><span class="blind">Facebook</span></a></li>
+					<li><a href="http://delicious.com/"><i class="xe-delicious"></i><span class="blind">Delicious</span></a></li>
+				</ul>
+			</span>
+		</div>		
+		<div class="actions2">
+			<span class="btnArea"> 
+				<a href="{getUrl('document_srl','')}" class="b_btn">{$lang->cmd_list}</a>
+			</span>
+		</div>
+	</div>
+	<!-- /READ FOOTER -->
+</div>
+<block cond="$oDocument->allowTrackback()">
+	<include target="_trackback.html" />
+</block>
+<include target="_comment.html" />

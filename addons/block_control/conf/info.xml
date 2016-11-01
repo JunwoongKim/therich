@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<addon version="0.2">
+	<title>마우스 우클릭 및 드래그 제한 애드온</title>
+	<description>
+		마우스 우클릭 및 드래그 제한 애드온입니다.
+	</description>
+	<version>1.0</version>
+	<date>2014-08-13</date>
+
+	<author email_address="fullpowe@naver.com" link="https://www.facebook.com/sangho.lee.79274">
+		<name>딸기아빠!</name>
+	</author>
+	<license>GPL</license>
+	<link>http://</link>
+	<extra_vars>
+		<group>
+			<title>일반 사용자</title>
+			<var name="no_click" type="select">
+				<title>마우스 우클릭 제한</title>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<description>마우스 오른쪽 클릭을 제한합니다.</description>
+			</var>
+			<var name="no_drag" type="select">
+				<title>마우스 드래그 제한</title>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<description>마우스 드래그를 제한합니다.</description>
+			</var>
+			<var name="no_select" type="select">
+				<title>더블클릭 선택 제한</title>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<description>더블클릭 선택을 제한합니다.</description>
+			</var>
+		</group>
+		<group>
+			<title>관리자</title>
+			<var name="admin_no_click" type="select">
+				<title>마우스 우클릭 제한</title>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<description>마우스 오른쪽 클릭을 제한합니다.</description>
+			</var>
+			<var name="admin_no_drag" type="select">
+				<title>마우스 드래그 제한</title>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<description>마우스 드래그를 제한합니다.</description>
+			</var>
+			<var name="admin_no_select" type="select">
+				<title>더블클릭 선택 제한</title>
+				<options value="y">
+					<title>사용</title>
+				</options>
+				<options value="n">
+					<title>미사용</title>
+				</options>
+				<description>더블클릭 선택을 제한합니다.</description>
+			</var>
+		</group>
+	</extra_vars>
+</addon>

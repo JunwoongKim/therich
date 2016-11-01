@@ -1,0 +1,39 @@
+<!--// 컬러셋 체크 -->
+<!--@if(!$module_info->colorset)-->
+  {@$module_info->colorset = "default"}
+<!--@end-->
+
+
+<!--// CSS 파일 로드 (컬러셋에 따라서) -->
+<!--%import("css/planner_common.css")-->
+<!--%import("css/planner_colorset_default.css")-->
+
+
+<!--// 게시판 제목관련 확장변수 설정 -->
+<!--@if(!$module_info->header_title_format)-->
+  {@ $module_info->header_title_format = 'h3'}
+<!--@end-->
+<!--@if($module_info->title)-->
+  <div class="boardHeader">
+    <div class="boardHeaderBorder">
+      <{$module_info->header_title_format}>{$module_info->title}<!--@if($module_info->sub_title)--> - {$module_info->sub_title}<!--@end--></{$module_info->header_title_format}>
+    </div>
+  </div>
+<!--@end-->
+<!--@if($module_info->comment)-->
+  <div class="boardDescription">{$module_info->comment}</div>
+<!--@end-->
+
+
+<!--// 일정 목록관련 확장변수 설정 -->
+<!--@if(!$module_info->plan_count)-->{@ $module_info->plan_count = 20}<!--@end-->
+<!--@if(!$module_info->duration_new = (int)$module_info->duration_new)-->{@ $module_info->duration_new = 12 }<!--@end-->
+
+
+<!--// 일정 추가 확장변수 설정 -->
+<!--@if(!$module_info->day_cell_height)-->{@ $module_info->day_cell_height = 80}<!--@end-->
+
+
+
+<!--// 상단 텍스트 출력 -->
+{$module_info->header_text}

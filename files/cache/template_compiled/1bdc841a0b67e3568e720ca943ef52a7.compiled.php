@@ -1,0 +1,5 @@
+<?php if(!defined("__XE__"))exit;?><ul class="x_nav x_nav-tabs">
+	<li<?php if($__Context->act == 'dispMapsAdminList'){ ?> class="x_active"<?php } ?> ><a href="<?php echo getUrl('act', 'dispMapsAdminList', 'maps_srl', '', 'page', '') ?>"><?php echo $__Context->lang->maps_module_maps_list ?></a></li>
+	<li<?php if($__Context->act == 'dispMapsAdminWrite' && !intval($__Context->maps_srl)){ ?> class="x_active"<?php } ?> ><a href="<?php echo getUrl('act', 'dispMapsAdminWrite', 'maps_srl', '', 'page', '') ?>"><?php echo $__Context->lang->maps_module_maps_write ?></a></li>
+	<li<?php if($__Context->act == 'dispMapsAdminConfig'){ ?> class="x_active"<?php } ?> ><a href="<?php echo getUrl('act', 'dispMapsAdminConfig', 'maps_srl', '', 'page', '') ?>"><?php echo $__Context->lang->maps_module_maps_setting ?></a></li>
+</ul>

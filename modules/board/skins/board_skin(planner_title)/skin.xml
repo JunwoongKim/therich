@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">Board Skin(http://xenara.co.cc) - Planner Title</title>
+    <description xml:lang="ko">
+        Board Skin(http://xenara.co.cc) - Planner Title
+    </description>
+    <version>0.1</version>
+    <date>2011-10</date>
+
+    <author email_address="kolaskks@naver.com" link="http://xenara.co.cc/">
+        <name xml:lang="ko">kindguy</name>
+    </author>
+
+    <colorset>
+        <color name="default" src="screenshot/planner_default.gif">
+            <title xml:lang="ko">Default</title>
+        </color>
+    </colorset>
+
+    <extra_vars>
+      <group>
+        <title>게시판 제목관련</title>
+        <var name="title" type="text">
+            <title xml:lang="ko">게시판 제목</title>
+            <description xml:lang="ko">게시판의 제목을 적어주세요.</description>
+        </var>
+        <var name="sub_title" type="text">
+            <title xml:lang="ko">게시판 부제목</title>
+            <description xml:lang="ko">게시판 제목 옆에 나타날 부제목을 적어주세요.</description>
+        </var>
+        <var name="comment" type="textarea">
+            <title xml:lang="ko">게시판 상세 설명</title>
+            <description xml:lang="ko">게시판 제목 아래 표시될 설명을 입력하실 수 있습니다.</description>
+        </var>
+        <var name="header_title_format" type="select">
+            <title xml:lang="ko">게시판 제목 형식</title>
+            <options value="h1">
+                <title xml:lang="ko">H1</title>
+            </options>
+            <options value="h2">
+                <title xml:lang="ko">H2</title>
+            </options>
+            <options value="h3">
+                <title xml:lang="ko">H3</title>
+            </options>
+            <options value="h4">
+                <title xml:lang="ko">H4</title>
+            </options>
+            <options value="h5">
+                <title xml:lang="ko">H5</title>
+            </options>
+            <options value="h6">
+                <title xml:lang="ko">H6</title>
+            </options>
+            <description />
+        </var>
+      </group>
+
+      <group>
+        <title>일정 목록관련</title>
+        <var name="plan_count" type="text">
+            <title xml:lang="ko">일정 목록수</title>
+            <description xml:lang="ko">출력될 일정 목록수를 정하실 수 있습니다. '게시판 정보'의 정렬대상, 정렬방법, 목록관련은 사용하지 않습니다. (기본 20개)</description>
+        </var>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">일정 제목 글자수</title>
+            <description xml:lang="ko">일정 제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+        </var>
+        <var name="duration_new" type="text" default="24">
+            <title xml:lang="ko">일정 new표시 시간 (hours)</title>
+            <description xml:lang="ko">새로 등록된 일정의 new 표시시간을 정할 수 있습니다. </description>
+        </var>
+      </group>
+
+      <group>
+        <title>일정 추가설정</title>
+        <var name="day_cell_height" type="text">
+            <title xml:lang="ko">게시판 달력 일자 높이</title>
+            <description xml:lang="ko">게시판 달력 일자 높이를 지정해주세요. 숫자만 입력하세요.(기본:80px)</description>
+        </var>
+      </group>
+    </extra_vars>
+</skin>

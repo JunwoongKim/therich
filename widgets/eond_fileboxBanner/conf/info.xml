@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget version="0.2">
+	<title xml:lang="ko">이온디 파일박스 배너위젯</title>
+	<description xml:lang="ko">파일박스를 이용한 배너위젯입니다</description>
+	<version>0.1</version>
+	<date>2015-09-04</date>
+
+	<author email_address="eond@eond.com" link="http://eond.com">
+		<name xml:lang="ko">이온디</name>
+	</author>
+
+	<extra_vars>
+        <var id="title_1"><name>1. title</name><type>text</type></var>
+        <var id="url_1"><name>url</name><type>text</type></var>
+        <var id="img_1"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_2"><name>2. title</name><type>text</type></var>
+        <var id="url_2"><name>url</name><type>text</type></var>
+        <var id="img_2"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_3"><name>3. title</name><type>text</type></var>
+        <var id="url_3"><name>url</name><type>text</type></var>
+        <var id="img_3"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+        
+        <var id="title_4"><name>4. title</name><type>text</type></var>
+        <var id="url_4"><name>url</name><type>text</type></var>
+        <var id="img_4"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_5"><name>5. title</name><type>text</type></var>
+        <var id="url_5"><name>url</name><type>text</type></var>
+        <var id="img_5"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_6"><name>6. title</name><type>text</type></var>
+        <var id="url_6"><name>url</name><type>text</type></var>
+        <var id="img_6"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_7"><name>7. title</name><type>text</type></var>
+        <var id="url_7"><name>url</name><type>text</type></var>
+        <var id="img_7"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_8"><name>8. title</name><type>text</type></var>
+        <var id="url_8"><name>url</name><type>text</type></var>
+        <var id="img_8"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_9"><name>9. title</name><type>text</type></var>
+        <var id="url_9"><name>url</name><type>text</type></var>
+        <var id="img_9"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_10"><name>10. title</name><type>text</type></var>
+        <var id="url_10"><name>url</name><type>text</type></var>
+        <var id="img_10"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_11"><name>11. title</name><type>text</type></var>
+        <var id="url_11"><name>url</name><type>text</type></var>
+        <var id="img_11"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_12"><name>12. title</name><type>text</type></var>
+        <var id="url_12"><name>url</name><type>text</type></var>
+        <var id="img_12"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_13"><name>13. title</name><type>text</type></var>
+        <var id="url_13"><name>url</name><type>text</type></var>
+        <var id="img_13"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_14"><name>14. title</name><type>text</type></var>
+        <var id="url_14"><name>url</name><type>text</type></var>
+        <var id="img_14"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_15"><name>15. title</name><type>text</type></var>
+        <var id="url_15"><name>url</name><type>text</type></var>
+        <var id="img_15"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_16"><name>16. title</name><type>text</type></var>
+        <var id="url_16"><name>url</name><type>text</type></var>
+        <var id="img_16"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_17"><name>17. title</name><type>text</type></var>
+        <var id="url_17"><name>url</name><type>text</type></var>
+        <var id="img_17"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_18"><name>18. title</name><type>text</type></var>
+        <var id="url_18"><name>url</name><type>text</type></var>
+        <var id="img_18"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_19"><name>19. title</name><type>text</type></var>
+        <var id="url_19"><name>url</name><type>text</type></var>
+        <var id="img_19"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+
+        <var id="title_20"><name>20. title</name><type>text</type></var>
+        <var id="url_20"><name>url</name><type>text</type></var>
+        <var id="img_20"><type filter="jpg,jpeg,gif,png">filebox</type></var>
+	</extra_vars>
+</widget>

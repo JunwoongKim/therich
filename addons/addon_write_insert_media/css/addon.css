@@ -1,0 +1,15 @@
+@charset "utf-8";
+.addon_write_insert_media { position:relative; padding:10px !important; margin-bottom:10px !important; border:1px solid #ccc; }
+
+.addon_write_insert_media .label { margin-right:10px; font-weight:bold; display:inline-block; }
+
+.addon_write_insert_media .media_url_area { margin-bottom:10px; display:block; }
+.addon_write_insert_media .media_url_area input.media_url { width:70%; padding:5px 5px; border:1px solid #ccc; border-radius:5px; display:inline-block; }
+
+.addon_write_insert_media .media_size_area { margin-bottom:10px; display:block; }
+.addon_write_insert_media .media_size_area input.media_size { padding:5px 5px; border:1px solid #ccc; border-radius:5px; display:inline-block; }
+.addon_write_insert_media .media_size_area .media_height_label { margin-left:50px; }
+
+.addon_write_insert_media .btn_insert_media { position:absolute; top:10px; right:10px; height:60px !important; padding-left:20px !important; padding-right:20px !important; margin-bottom:10px; line-height:60px !important; text-align:center; display:inline-block; }
+
+.addon_write_insert_media .howto_media { padding:5px; border:1px solid #eee; border-radius:5px; background:#eee; display:block; }

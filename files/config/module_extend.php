@@ -1,0 +1,1 @@
+<?PHP return array('page..view' => 'easyxe','page.admin.view' => 'easyxe'); ?>

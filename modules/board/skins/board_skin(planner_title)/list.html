@@ -1,0 +1,20 @@
+<!--// header.html include -->
+<!--#include("header.html")-->
+
+
+<!--// 선택된 게시물이 있고 권한이 있으면 내용 출력 -->
+<!--@if($oDocument->isExists() && $module_info->default_style != 'blog')-->
+  <div class="viewDocument">
+    <!--#include("./view_document.html")-->
+  </div>
+<!--@end-->
+
+
+<!--@if($view_document!=1)-->
+  <!--#include("./planner_title.html")-->
+<!--@end-->
+{@ $view_document = 0}
+
+
+<!--// footer.html include -->
+<!--#include("footer.html")-->

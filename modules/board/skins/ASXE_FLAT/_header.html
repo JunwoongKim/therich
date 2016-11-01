@@ -1,0 +1,26 @@
+<load target="https://s3.amazonaws.com/icomoon.io/49314/XEIconv10/style.css" />
+<load target="board.css" />
+<load target="board.js" type="body" />
+<!--@if($order_type == "desc")-->
+    {@ $order_type = "asc"; }
+<!--@else-->
+    {@ $order_type = "desc"; }
+<!--@end-->
+<block cond="!$module_info->duration_new = (int)$module_info->duration_new">{@ $module_info->duration_new = 12 }</block>
+{@ $cate_list = array(); $current_key = null; }
+<!--@foreach($category_list as $key=>$val)-->
+	<!--@if(!$val->depth)-->
+		{@
+			$cate_list[$key] = $val;
+			$cate_list[$key]->children = array();
+			$current_key = $key;
+		}
+	<!--@elseif($current_key)-->
+		{@ $cate_list[$current_key]->children[] = $val }
+	<!--@end-->
+<!--@end-->
+<div class="board">
+	<div class="header_text" cond="$module_info->header_text || $module_info->title_image">
+		<a href="{getUrl('','mid',$mid)}" cond="$module_info->title_image"><img src="{$module_info->title_image}" alt="{$module_info->title_alt}" /></a>
+		<p>{$module_info->header_text}</p>
+	</div>

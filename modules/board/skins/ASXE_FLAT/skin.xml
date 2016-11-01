@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">ASXE_FLAT</title>
+    <title xml:lang="en">ASXE_FLAT</title>
+    <description xml:lang="ko">Asurada Style XpressEngine_Theme.FLAT : 게시판 스킨</description>
+	<description xml:lang="en">Asurada Style XpressEngine_Theme.FLAT : Board Skin</description>
+    <version>1.1</version>
+    <date>2015/02/06</date>
+    <link>http://asnote.net/</link>
+
+    <author email_address="vasurada@empas.com" link="http://asnote.net/">
+        <name xml:lang="ko">Asurada</name>
+        <name xml:lang="en">Asurada</name>
+    </author>
+
+    <license>LGPL v2</license>
+
+    <extra_vars>
+        <var name="title_image" type="image">
+            <title xml:lang="ko">게시판 제목 이미지</title>
+			<description xml:lang="ko">작성하면 화면에 표시 됨</description>
+        </var>
+        <var name="title_alt" type="text">
+            <title xml:lang="ko">게시판 제목 이미지 alt</title>
+			<description xml:lang="ko">게시판 제목 이미지 대체 텍스트</description>
+        </var>
+    </extra_vars>
+</skin>
+

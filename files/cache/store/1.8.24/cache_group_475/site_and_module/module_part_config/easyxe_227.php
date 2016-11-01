@@ -1,0 +1,3 @@
+<?php
+if(!defined('__XE__')) { exit(); }
+return 'O:8:\"stdClass\":2:{s:14:\"customMessages\";O:8:\"stdClass\":0:{}s:13:\"customMessage\";O:8:\"stdClass\":8:{s:26:\"msg_not_permitted_access_A\";s:25:\"현재 준비중입니다\";s:25:\"msg_not_permitted_write_A\";s:25:\"현재 준비중입니다\";s:24:\"msg_not_permitted_list_A\";s:25:\"현재 준비중입니다\";s:24:\"msg_not_permitted_view_A\";s:25:\"현재 준비중입니다\";s:26:\"msg_not_permitted_access_B\";s:25:\"현재 준비중입니다\";s:25:\"msg_not_permitted_write_B\";s:25:\"현재 준비중입니다\";s:24:\"msg_not_permitted_list_B\";s:25:\"현재 준비중입니다\";s:24:\"msg_not_permitted_view_B\";s:25:\"현재 준비중입니다\";}}';

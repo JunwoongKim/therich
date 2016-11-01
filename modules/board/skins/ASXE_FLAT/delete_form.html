@@ -1,0 +1,33 @@
+<include target="_header.html" />
+<div cond="$oDocument->isExists()" class="board_read">
+	<div class="read_header">
+		<h1>
+			<a href="{$oDocument->getPermanentUrl()}">{$oDocument->getTitle()}</a>
+		</h1>
+		<div class="meta_author">
+			<a cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && $oDocument->isExistsHomepage()" href="{$oDocument->getHomepageUrl()}" onclick="window.open(this.href);return false;" class="author">{$oDocument->getNickName()}</a>
+			<block cond="$module_info->display_author!='N' && !$oDocument->getMemberSrl() && !$oDocument->isExistsHomepage()">{$oDocument->getNickName()}</block>
+			<a cond="$module_info->display_author!='N' && $oDocument->getMemberSrl()" href="#popup_menu_area" class="member_{$oDocument->get('member_srl')} author" onclick="return false">{$oDocument->getNickName()}</a>
+		</div>
+		<div class="meta">
+			<span class="time">
+				{$oDocument->getRegdate('Y.m.d H:i')}
+			</span>
+			<span class="sum">
+				<span class="read">{$lang->readed_count} <strong>{$oDocument->get('readed_count')}</strong></span>
+				<span class="vote" cond="$oDocument->get('voted_count')!=0"> {$lang->cmd_vote} <strong>{$oDocument->get('voted_count')}</strong></span>
+			</span>
+		</div>
+	</div>
+</div>
+<form action="./" method="get" onsubmit="return procFilter(this, delete_document)" class="context_message">
+	<input type="hidden" name="mid" value="{$mid}" />
+	<input type="hidden" name="page" value="{$page}" />
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<h1>{$lang->cmd_document_do} {$lang->confirm_delete}</h1>
+	<div class="btnArea">
+		<input type="submit" class="b_btn" value="{$lang->cmd_delete}" />
+		<button type="button" class="b_btn" onclick="history.back()">{$lang->cmd_cancel}</button>
+	</div>
+</form>
+<include target="_footer.html" />
