@@ -56,7 +56,8 @@
 	}
 
 	if (!$end_member_list) {
-		echo "연회원 등업 게시물의 유저를 종료 날짜 지난 유저 없음";
+		echo '<script>alert("연회원 등업 게시물의 종료 날짜가 지난 유저는 없습니다.")</script>';
+		echo '<script>document.location.href="http://ontherich.co.kr"</script>';		
 		exit;
 	}
 
@@ -72,7 +73,7 @@
 	if (!$delete_member_list) {
 		// 리다이렉트
 		echo '<script>alert("기간이 만료된 연회원이 없습니다.")</script>';
-		echo '<script>document.location.href="http://ontherich.co.kr/index.php?module=admin&act=dispMemberAdminList"</script>';		
+		echo '<script>document.location.href="http://ontherich.co.kr"</script>';		
 		exit;	
 	}
 
@@ -92,7 +93,6 @@
 
 	// 리다이렉트
 	echo '<script>alert("정상적으로 완료 되었습니다.\n관리자 페이지에서 캐시파일 재생성을 눌러주세요.")</script>';
-	echo '<script>document.location.href="http://ontherich.co.kr/index.php?module=admin&act=dispMemberAdminList"</script>';
-
+	echo '<script>document.location.href="http://ontherich.co.kr/index.php?module=admin"</script>';
 	exit;
 ?>
