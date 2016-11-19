@@ -1,26 +1,9 @@
 <?php
 /*
  * 연회원 종료일을 확인해서 기간이 지난 유저들은 연회원 유저에서 제외시킴
+ * @author email: junwoong2@gmail.com
  * 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-//	require_once "../config/config.inc.php";
-
-/*	
-	require_once "../index.php";
-	require_once "../config/func.inc.php";
-	require_once "../classes/context/Context.class.php";
-	require_once "../classes/object/Object.class.php";
-	require_once "../classes/module/ModuleObject.class.php";
-	require_once "../classes/file/FileHandler.class.php";
-	require_once "../modules/admin/admin.class.php";
-	require_once "../modules/admin/admin.admin.controller.php";
-
-	// 캐시 지우기
-	$obj = new adminAdminController();
-	$obj->procAdminRecompileCacheFile();
-*/
-
 	// 디비 접속
 	$mysql_hostname = 'db.ontherich.co.kr';
 	$mysql_username = 'therich';
@@ -32,10 +15,10 @@
 	//1. DB 연결
 	$connect = @mysql_connect($mysql_hostname.':'.$mysql_port, $mysql_username, $mysql_password); 
 	if (!$connect) {
-		echo '[연결실패] : '.mysql_error().'<br>'; 
+		echo '[DB연결실패] : '.mysql_error().'<br>'; 
 		die('MySQL 서버에 연결할 수 없습니다.');
 	} else {
-		echo '[연결성공]<br>';
+		//echo '[DB연결성공]<br>';
 	}
 
 	//2. DB 선택
@@ -87,7 +70,9 @@
 	}
 
 	if (!$delete_member_list) {
-		echo "기간이 만료된 연회원이 없습니다";
+		// 리다이렉트
+		echo '<script>alert("기간이 만료된 연회원이 없습니다.")</script>';
+		echo '<script>document.location.href="http://ontherich.co.kr/index.php?module=admin&act=dispMemberAdminList"</script>';		
 		exit;	
 	}
 
@@ -105,14 +90,9 @@
 	//4. 연결 종료
 	mysql_close($connect);
 
-	// 캐시 지우기
-//	echo '<script src="/common/js/xe.min.js?'.date("YmdHis").'"></script>';
-//	echo "<script>doRecompileCacheFile();</script>";
-
-	// 캐시 지우기
-	//$obj = new adminAdminController();
-	//$obj->procAdminRecompileCacheFile();
-
-
 	// 리다이렉트
+	echo '<script>alert("정상적으로 완료 되었습니다.\n관리자 페이지에서 캐시파일 재생성을 눌러주세요.")</script>';
+	echo '<script>document.location.href="http://ontherich.co.kr/index.php?module=admin&act=dispMemberAdminList"</script>';
+
+	exit;
 ?>
